@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import os
 import sys
 
 from pathlib import Path
@@ -18,25 +17,18 @@ def main():
     else:
         prefix = DEFAULT_PREFIX
 
-    env_path = os.getenv('PATH')
-    env_pythonpath = os.getenv('PYTHONPATH')
+    prefix.mkdir(parents=True, exist_ok=True)
 
-    path = ':'.join(filter_none([
-        '%s/sbin' % (prefix,),
-        '%s/bin' % (prefix,),
-        env_path,
-    ]))
+    activate_file = prefix / 'activate'
 
-    pythonpath = ':'.join(filter_none([
-        '%s/lib/python2.7/site-packages' % (prefix,),
-        env_pythonpath,
-    ]))
-
-    print('export INSTALL_PREFIX=%s' % (prefix,))
-    print('export LD_LIBRARY_PATH=%s/lib' % (prefix,))
-    print('export PKG_CONFIG_PATH=%s/lib/pkgconfig' % (prefix,))
-    print('export PATH=%s' % (path,))
-    print('export PYTHONPATH=%s' % (pythonpath,))
+    with activate_file.open(mode='w') as f:
+        f.write('PREFIX=%s\n' % (prefix,))
+        f.write('export INSTALL_PREFIX=$PREFIX\n')
+        f.write('export LD_LIBRARY_PATH=$PREFIX/lib\n')
+        f.write('export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig\n')
+        f.write('export PATH=$PREFIX/sbin:$PREFIX/bin:$PATH\n')
+        f.write('export PYTHONPATH=$PREFIX/lib/python2.7/site-packages:' +
+                '$PTYHONPATH\n')
 
 
 if __name__ == '__main__':
