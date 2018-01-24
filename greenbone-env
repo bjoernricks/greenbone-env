@@ -21,14 +21,14 @@ def main():
 
     activate_file = prefix / 'activate'
 
+    template_file = Path(__file__).parent / 'activate'
+    with template_file.open('r') as tf:
+        template = tf.read()
+
+    activate = template.replace('__PREFIX__', str(prefix))
+
     with activate_file.open(mode='w') as f:
-        f.write('PREFIX=%s\n' % (prefix,))
-        f.write('export INSTALL_PREFIX=$PREFIX\n')
-        f.write('export LD_LIBRARY_PATH=$PREFIX/lib\n')
-        f.write('export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig\n')
-        f.write('export PATH=$PREFIX/sbin:$PREFIX/bin:$PATH\n')
-        f.write('export PYTHONPATH=$PREFIX/lib/python2.7/site-packages:' +
-                '$PTYHONPATH\n')
+        f.write(activate)
 
 
 if __name__ == '__main__':

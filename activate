@@ -1,0 +1,40 @@
+# this file must be used with "source activate"
+
+deactivate () {
+    unset INSTALL_PREFIX
+    unset -f deactivate
+
+    if [ -n "$_OLD_PATH" ]; then
+        export PATH="$_OLD_PATH"
+        unset _OLD_PATH
+    fi
+
+    if [ -n "$_OLD_PYTHONPATH" ]; then
+        export PYTHONPATH="$_OLD_PYTHONPATH"
+        unset _OLD_PYTHONPATH
+    fi
+
+    if [ -n "$_OLD_PS1" ] ; then
+        export PS1="$_OLD_PS1"
+        unset _OLD_PS1
+    fi
+}
+
+PREFIX=__PREFIX__
+
+_OLD_PATH="$PATH"
+_OLD_PYTHONPATH="$PYTHONPATH"
+_OLD_PS1="$PS1"
+
+export INSTALL_PREFIX=$PREFIX
+export LD_LIBRARY_PATH=$PREFIX/lib
+export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
+export PATH=$PREFIX/sbin:$PREFIX/bin:$PATH
+export PYTHONPATH=$PREFIX/lib/python2.7/site-packages:$PYTHONPATH
+
+if [ "x" != x ] ; then
+    PS1="$PS1"
+else
+    PS1="(env: `basename \"$PREFIX\"`) $PS1"
+fi
+export PS1
