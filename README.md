@@ -8,8 +8,10 @@ you have to adjust all the paths manually.
 
 ## Solution
 
-Create an environment for Greenbone/OpenVAS development. This allows to use different versions of OpenVAS at the same
-time by seperating the install directory. Highly inspired by [virtualenv](https://github.com/pypa/virtualenv/) for python.
+Create an environment for Greenbone/OpenVAS development. This allows to use
+different versions of OpenVAS at the same time by seperating the install
+directory. Highly inspired by [virtualenv](https://github.com/pypa/virtualenv/)
+for python.
 
 ## Install
 
@@ -23,8 +25,9 @@ e.g.
 ```bash
 $ ~/git/greenbon-env/greenbon-env ~/install/master-with-postgres
 ```
-to create a new environment. At the specified environment directory **greenbone-env** adds an *activate* script which must be
-sourced to get into the environment.
+to create a new environment. At the specified environment directory
+**greenbone-env** adds an *activate* script which must be sourced to get into
+the environment.
 
 Running
 ```bash
@@ -46,8 +49,11 @@ The environment can be terminated by running
 
 ## Usage
 
-The *activate* scripts sets some shell environment variables to be able to separate installations. These environment variables
-should be used wenn configuring the Greenbone/OpenVAS repos. E.g. to configure [openvas-scanner](https://github.com/greenbone/openvas-scanner/) to be installed within the environment use the following commands:
+The *activate* scripts sets some shell environment variables to be able to
+separate installations. These environment variables should be used when
+configuring the Greenbone/OpenVAS repos. E.g. to configure
+[openvas-scanner](https://github.com/greenbone/openvas-scanner/) to be installed
+within the environment use the following commands:
 
 ```bash
 (env: myenv) $ cd path/to/scanner-clone
