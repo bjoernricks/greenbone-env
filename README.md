@@ -29,7 +29,10 @@ will start the environment. Afterwards you will get a prompt like
 (env: master-with-postgres) $
 ```
 
-The environment can be terminated by running `deactivate`
+The environment can be terminated by running
+```bash
+(env: myenv) $ deactivate
+```
 
 ## Usage
 
