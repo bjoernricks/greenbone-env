@@ -1,5 +1,13 @@
 # greenbone-env
 
+## The problem
+
+You need to develop/test/work on different versions/branches/features of the
+OpenVAS modules, it's difficult to track where these versions are installed and
+you have to adjust all the paths manually.
+
+## Solution
+
 Create an environment for Greenbone/OpenVAS development. This allows to use different versions of OpenVAS at the same
 time by seperating the install directory. Highly inspired by [virtualenv](https://github.com/pypa/virtualenv/) for python.
 
