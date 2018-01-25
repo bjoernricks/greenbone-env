@@ -5,6 +5,8 @@ time by seperating the install directory. Highly inspired by [virtualenv](https:
 
 ## Install
 
+**greenbone-env** requires Python 3 to be installed.
+
 Clone the repo and run 
 ```bash
 $ path/to/greenbone-env <path/to/env>
