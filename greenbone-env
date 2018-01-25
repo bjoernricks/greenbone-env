@@ -30,6 +30,10 @@ def main():
     with activate_file.open(mode='w') as f:
         f.write(activate)
 
+    print('Created environment at %s' % (str(prefix),))
+    print('Please run "source %s" to start the environment\n' %
+          (str(activate_file)))
+
 
 if __name__ == '__main__':
     main()
