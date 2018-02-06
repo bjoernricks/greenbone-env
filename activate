@@ -43,6 +43,7 @@ deactivate () {
 
     unset _OLD_LD_LIBRARY_PATH
 
+    unalias cmake
 }
 
 PREFIX=__PREFIX__
@@ -65,3 +66,5 @@ else
     PS1="(env: `basename \"$PREFIX\"`) $PS1"
 fi
 export PS1
+
+alias cmake="cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX"
