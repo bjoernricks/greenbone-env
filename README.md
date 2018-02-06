@@ -49,17 +49,16 @@ The environment can be terminated by running
 
 ## Usage
 
-The *activate* scripts sets some shell environment variables to be able to
-separate installations. These environment variables should be used when
-configuring the Greenbone/OpenVAS repos. E.g. to configure
+The *activate* scripts sets some shell environment variables and shell aliases
+to be able to separate installations. These environment variables should be used
+when configuring the Greenbone/OpenVAS repos. E.g. to configure
 [openvas-scanner](https://github.com/greenbone/openvas-scanner/) to be installed
 within the environment use the following commands:
 
 ```bash
-(env: myenv) $ cd path/to/scanner-clone
 (env: myenv) $ mkdir build
 (env: myenv) $ cd build
-(env: myenv) $ cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX ..
+(env: myenv) $ cmake path/to/scanner-git-repo-clone
 (env: myenv) $ make
 (env: myenv) $ make install
 ```
