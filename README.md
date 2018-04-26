@@ -3,8 +3,8 @@
 ## The problem
 
 You need to develop/test/work on different versions/branches/features of the
-OpenVAS modules, it's difficult to track where these versions are installed and
-you have to adjust all the paths manually.
+GVM/OpenVAS modules, it's difficult to track where these versions are installed
+and you have to adjust all the paths manually.
 
 ## Solution
 
@@ -17,7 +17,7 @@ for python.
 
 **greenbone-env** requires Python 3 to be installed.
 
-Clone the repo and run 
+Clone the repo and run
 ```bash
 $ path/to/greenbone-env <path/to/env>
 ```
@@ -31,11 +31,11 @@ the environment.
 
 Running
 ```bash
-$ source path/to/env/activate
+$ source path/to/env/bin/activate
 ```
 e.g 
 ```bash
-$ source ~/install/master-with-postgres
+$ source ~/install/master-with-postgres/bin/activate
 ```
 will start the environment. Afterwards you will get a prompt like
 ```bash
@@ -49,9 +49,9 @@ The environment can be terminated by running
 
 ## Usage
 
-The *activate* scripts sets some shell environment variables and shell aliases
+The *activate* script sets some shell environment variables and shell aliases
 to be able to separate installations. These environment variables will be used
-when configuring the Greenbone/OpenVAS repos. E.g. to configure
+when configuring the GVM/OpenVAS repos. E.g. to configure
 [openvas-scanner](https://github.com/greenbone/openvas-scanner/) to be installed
 within the environment use the following commands:
 
