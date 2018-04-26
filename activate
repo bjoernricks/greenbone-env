@@ -1,4 +1,32 @@
+#!/bin/sh
+#
 # this file must be used with "source activate"
+
+
+PREFIX=__PREFIX__
+
+if [ -z "$PREFIX" ] || [ "$PREFIX" = "\__PREFIX\__" ]; then
+    echo "Error: No PREFIX set."
+    exit 1
+fi
+
+_OLD_PATH="$PATH"
+_OLD_PYTHONPATH="$PYTHONPATH"
+_OLD_PS1="$PS1"
+_OLD_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
+_OLD_PKG_CONFIG_PATH="$PKG_CONFIG_PATH"
+
+
+export INSTALL_PREFIX=$PREFIX
+export LD_LIBRARY_PATH=$PREFIX/lib
+export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
+export PATH=$PREFIX/sbin:$PREFIX/bin:$PATH
+export PYTHONPATH=$PREFIX/lib/python2.7/site-packages:$PYTHONPATH
+
+export SOURCE_PREFIX=__SRCPREFIX__
+export BUILD_PREFIX=__BUILDPREFIX__
+export MODULES="__MODULES__"
+
 
 deactivate () {
     unset INSTALL_PREFIX
@@ -44,27 +72,18 @@ deactivate () {
     unset _OLD_LD_LIBRARY_PATH
 
     unalias cmake
+
+    unset SOURCE_PREFIX
+    unset BUILD_PREFIX
 }
-
-PREFIX=__PREFIX__
-
-_OLD_PATH="$PATH"
-_OLD_PYTHONPATH="$PYTHONPATH"
-_OLD_PS1="$PS1"
-_OLD_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
-_OLD_PKG_CONFIG_PATH="$PKG_CONFIG_PATH"
-
-export INSTALL_PREFIX=$PREFIX
-export LD_LIBRARY_PATH=$PREFIX/lib
-export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
-export PATH=$PREFIX/sbin:$PREFIX/bin:$PATH
-export PYTHONPATH=$PREFIX/lib/python2.7/site-packages:$PYTHONPATH
 
 if [ "x" != x ] ; then
     PS1="$PS1"
 else
-    PS1="(env: `basename \"$PREFIX\"`) $PS1"
+    PS1="(env: `basename \"$INSTALL_PREFIX\"`) $PS1"
 fi
 export PS1
 
+# simplify running cmake by setting the prefix automatically
+# attentions: this gets overriden when starting a new shell
 alias cmake="cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX"
