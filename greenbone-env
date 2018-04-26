@@ -1,38 +1,104 @@
 #!/usr/bin/env python3
 
-import sys
+import argparse
+import os
+import stat
 
 from pathlib import Path
 
 DEFAULT_PREFIX = Path.home() / 'install' / 'master'
+DEFAULT_SOURCEDIR = Path.home() / 'sources' / 'master'
+DEFAULT_MODULES = [
+    'openvas-smb',
+    'gvm-libs',
+    'openvas-scanner',
+    'gvm',
+    'gsa',
+]
+
+parser = argparse.ArgumentParser(
+    description='Create an environment for Greenbone development.'
+)
+
+parser.add_argument(
+    'prefix',
+    nargs='?',
+    default=DEFAULT_PREFIX,
+    help='Root directory where your files will be installed '
+         '(default: %(default)s).'
+)
+
+parser.add_argument(
+    'sourcedir',
+    nargs='?',
+    default=DEFAULT_SOURCEDIR,
+    help='Source directory where your modules can be found '
+         '(default: %(default)s).',
+)
+
+parser.add_argument(
+    'builddir',
+    nargs='?',
+    help='Root for your build directories (default: $PREFIX/build).',
+)
+
+parser.add_argument(
+    '--modules',
+    nargs='*',
+    metavar="MODULE",
+    default=DEFAULT_MODULES,
+    help='Modules to build (default: %s).' %
+         ' '.join(DEFAULT_MODULES)
+)
 
 
 def filter_none(paths):
     return [path for path in paths if path is not None]
 
 
-def main():
-    if len(sys.argv) > 1:
-        prefix = Path(sys.argv[1]).absolute()
-    else:
-        prefix = DEFAULT_PREFIX
+def replace_vars(template, args):
+    builddir = args.builddir or Path(args.prefix) / 'build'
 
+    t = template.replace('__PREFIX__', str(args.prefix))
+    t = t.replace('__SRCPREFIX__', str(args.sourcedir))
+    t = t.replace('__MODULES__', " ".join(args.modules))
+    t = t.replace('__BUILDPREFIX__', str(builddir))
+    t = t.replace('\\__', "__")
+    return t
+
+
+def main():
+    args = parser.parse_args()
+
+    prefix = Path(args.prefix).absolute()
     prefix.mkdir(parents=True, exist_ok=True)
 
-    activate_file = prefix / 'activate'
+    bindir = prefix / 'bin'
+    bindir.mkdir(exist_ok=True)
 
-    template_file = Path(__file__).parent / 'activate'
-    with template_file.open('r') as tf:
-        template = tf.read()
+    template_files = [
+        'activate',
+        'build',
+        'build-all',
+    ]
 
-    activate = template.replace('__PREFIX__', str(prefix))
+    for name in template_files:
+        script_file = bindir / name
 
-    with activate_file.open(mode='w') as f:
-        f.write(activate)
+        template_file = Path(__file__).parent / name
+        with template_file.open('r') as tf:
+            template = tf.read()
+
+        script = replace_vars(template, args)
+
+        with script_file.open(mode='w') as f:
+            f.write(script)
+
+        os.chmod(script_file, stat.S_IRWXU | stat.S_IRWXG)
 
     print('Created environment at %s' % (str(prefix),))
     print('Please run "source %s" to start the environment\n' %
-          (str(activate_file)))
+          (str(bindir / 'activate')))
 
 
 if __name__ == '__main__':
