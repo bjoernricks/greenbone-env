@@ -62,3 +62,37 @@ within the environment use the following commands:
 (env: myenv) $ make
 (env: myenv) $ make install
 ```
+
+The *build* script even simplifies the steps to build a specific GVM/OpenVAS
+module. By passing a second parameter to **greenbone-env** it is possible to
+customize the source prefix directory where the source of the modules can be
+found. The third parameter sets the build prefix directory.
+
+```bash
+$ path/to/greenbone-env <path/to/env> <path/to/sources> <path/to/builds>
+```
+
+e.g.
+```bash
+$ ~/git/greenbon-env/greenbon-env ~/install/master-with-postgres ~/sources ~/builds
+```
+
+Afterward a module can be build with
+```bash
+(env: myenv) $ build <modulename>
+```
+
+e.g.
+```bash
+(env: myenv) $ build gvm
+```
+
+Example:
+
+```bash
+$ ~/git/greenbon-env/greenbon-env ~/install/my-env ~/sources ~/builds
+$ source ~/install/my-env/bin/activate
+(env: myenv) $ build gvm
+```
+
+will build gvm from ~/source/gvm in ~/builds/gvm and installs to ~/my-env.
