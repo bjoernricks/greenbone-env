@@ -1,0 +1,45 @@
+#!/bin/sh
+
+PREFIX=__PREFIX__
+
+if [ -z "$PREFIX" ] || [ "$PREFIX" = "\__PREFIX\__" ]; then
+    echo "Error: No PREFIX set."
+    exit 1
+fi
+
+if [ -z "$INSTALL_PREFIX" ] || [ -z "$BUILD_PREFIX" ]; then
+    if [ ! -e  "$PREFIX/bin/activate" ]; then
+        echo "activate script doesn't exist"
+        exit 1
+    fi
+
+    . "$PREFIX/bin/activate"
+fi
+
+module="$1"
+if [ -z "$module" ]; then
+    echo "No module to build specified"
+    exit 1
+fi
+
+SOURCE_DIR=$SOURCE_PREFIX/$module
+BUILD_DIR=$BUILD_PREFIX/$module
+
+if [ ! -e  "$SOURCE_DIR/CMakeLists.txt" ]; then
+    echo "No CMakeLists.txt found in $SOURCE_DIR"
+    exit 1
+fi
+
+echo "Building $module in $BUILD_DIR from $SOURCE_DIR"
+
+if [ ! -e  "$BUILD_DIR/Makefile" ]; then
+    mkdir -p "$BUILD_DIR" || exit 1
+    cd "$BUILD_DIR" || exit 1
+    cmake -DCMAKE_INSTALL_PREFIX="$INSTALL_PREFIX" "$SOURCE_DIR" || exit 1
+else
+    cd "$BUILD_DIR" || exit 1
+    make rebuild_cache || exit 1
+fi
+
+make || exit 1
+make install || exit 1

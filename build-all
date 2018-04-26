@@ -1,0 +1,34 @@
+#!/bin/sh
+
+PREFIX=__PREFIX__
+
+if [ -z "$PREFIX" ] || [ "$PREFIX" = "\__PREFIX\__" ]; then
+    echo "Error: No PREFIX set."
+    exit 1
+fi
+
+if [ -z "$INSTALL_PREFIX" ] || [ -z "$MODULES" ]; then
+    if [ ! -e  "$PREFIX/bin/activate" ]; then
+        echo "activate script doesn't exist"
+        exit 1
+    fi
+
+    . "$PREFIX/bin/activate"
+fi
+
+# delete libs
+if [ -w "$INSTALL_PREFIX/lib" ]; then
+    rm -rf "$INSTALL_PREFIX/lib/libopenvas*"
+    rm -rf "$INSTALL_PREFIX/lib/libgvm*"
+    rm -rf "$INSTALL_PREFIX/lib/pkgconfig/libopenvas*"
+    rm -rf "$INSTALL_PREFIX/lib/pkgconfig/libgvm*"
+fi
+
+# delete generated files for gsad
+if [ -w "$INSTALL_PREFIX/share/gvm/gsad/" ]; then
+    rm -rf "$INSTALL_PREFIX/share/gvm/gsad/"
+fi
+
+for module in $(echo "$MODULES"); do
+    build "$module" || exit 1
+done
