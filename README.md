@@ -49,6 +49,8 @@ The environment can be terminated by running
 
 ## Usage
 
+### activate
+
 The *activate* script sets some shell environment variables and shell aliases
 to be able to separate installations. These environment variables will be used
 when configuring the GVM/OpenVAS repos. E.g. to configure
@@ -62,6 +64,8 @@ within the environment use the following commands:
 (env: myenv) $ make
 (env: myenv) $ make install
 ```
+
+### build
 
 The *build* script even simplifies the steps to build a specific GVM/OpenVAS
 module. By passing a second parameter to **greenbone-env** it is possible to
