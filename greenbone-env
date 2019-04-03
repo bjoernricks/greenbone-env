@@ -84,7 +84,7 @@ def main():
         with script_file.open(mode='w') as f:
             f.write(script)
 
-        os.chmod(script_file, stat.S_IRWXU | stat.S_IRWXG)
+        os.chmod(str(script_file), stat.S_IRWXU | stat.S_IRWXG)
 
     print('Created environment at %s' % (str(prefix),))
     print(
