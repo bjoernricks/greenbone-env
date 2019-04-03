@@ -8,13 +8,7 @@ from pathlib import Path
 
 DEFAULT_PREFIX = Path.home() / 'install' / 'master'
 DEFAULT_SOURCEDIR = Path.home() / 'sources' / 'master'
-DEFAULT_MODULES = [
-    'openvas-smb',
-    'gvm-libs',
-    'openvas-scanner',
-    'gvm',
-    'gsa',
-]
+DEFAULT_MODULES = ['openvas-smb', 'gvm-libs', 'openvas-scanner', 'gvm', 'gsa']
 
 parser = argparse.ArgumentParser(
     description='Create an environment for Greenbone development.'
@@ -25,7 +19,7 @@ parser.add_argument(
     nargs='?',
     default=DEFAULT_PREFIX,
     help='Root directory where your files will be installed '
-         '(default: %(default)s).'
+    '(default: %(default)s).',
 )
 
 parser.add_argument(
@@ -33,7 +27,7 @@ parser.add_argument(
     nargs='?',
     default=DEFAULT_SOURCEDIR,
     help='Source directory where your modules can be found '
-         '(default: %(default)s).',
+    '(default: %(default)s).',
 )
 
 parser.add_argument(
@@ -47,8 +41,7 @@ parser.add_argument(
     nargs='*',
     metavar="MODULE",
     default=DEFAULT_MODULES,
-    help='Modules to build (default: %s).' %
-         ' '.join(DEFAULT_MODULES)
+    help='Modules to build (default: %s).' % ' '.join(DEFAULT_MODULES),
 )
 
 
@@ -76,11 +69,7 @@ def main():
     bindir = prefix / 'bin'
     bindir.mkdir(exist_ok=True)
 
-    template_files = [
-        'activate',
-        'build',
-        'build-all',
-    ]
+    template_files = ['activate', 'build', 'build-all']
 
     for name in template_files:
         script_file = bindir / name
@@ -97,8 +86,10 @@ def main():
         os.chmod(script_file, stat.S_IRWXU | stat.S_IRWXG)
 
     print('Created environment at %s' % (str(prefix),))
-    print('Please run "source %s" to start the environment\n' %
-          (str(bindir / 'activate')))
+    print(
+        'Please run "source %s" to start the environment\n'
+        % (str(bindir / 'activate'))
+    )
 
 
 if __name__ == '__main__':
