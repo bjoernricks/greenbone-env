@@ -10,7 +10,7 @@ DEFAULT_PREFIX = Path.home() / 'install' / 'master'
 DEFAULT_SOURCEDIR = Path.home() / 'sources' / 'master'
 DEFAULT_MODULES = ['openvas-smb', 'gvm-libs', 'openvas-scanner', 'gvm', 'gsa']
 
-parser = argparse.ArgumentParser(
+parser = argparse.ArgumentParser(  # pylint: disable=invalid-name
     description='Create an environment for Greenbone development.'
 )
 
@@ -50,8 +50,9 @@ def filter_none(paths):
 
 
 def replace_vars(template, args):
-    builddir = args.builddir or Path(args.prefix) / 'build'
+    # pylint: disable=invalid-name
 
+    builddir = args.builddir or Path(args.prefix) / 'build'
     t = template.replace('__PREFIX__', str(args.prefix))
     t = t.replace('__SRCPREFIX__', str(args.sourcedir))
     t = t.replace('__MODULES__', " ".join(args.modules))
