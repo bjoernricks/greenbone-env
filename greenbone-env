@@ -8,7 +8,7 @@ from pathlib import Path
 
 DEFAULT_PREFIX = Path.home() / 'install' / 'master'
 DEFAULT_SOURCEDIR = Path.home() / 'sources' / 'master'
-DEFAULT_MODULES = ['openvas-smb', 'gvm-libs', 'openvas-scanner', 'gvm', 'gsa']
+DEFAULT_MODULES = ['openvas-smb', 'gvm-libs', 'openvas-scanner', 'gvmd', 'gsa']
 
 parser = argparse.ArgumentParser(  # pylint: disable=invalid-name
     description='Create an environment for Greenbone development.'
