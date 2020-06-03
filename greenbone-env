@@ -8,41 +8,44 @@ from pathlib import Path
 
 DEFAULT_PREFIX = Path.home() / 'install' / 'master'
 DEFAULT_SOURCEDIR = Path.home() / 'sources' / 'master'
-DEFAULT_MODULES = ['openvas-smb', 'gvm-libs', 'openvas-scanner', 'gvmd', 'gsa']
+DEFAULT_MODULES = ['openvas-smb', 'gvm-libs', 'openvas', 'gvmd', 'gsa']
 
-parser = argparse.ArgumentParser(  # pylint: disable=invalid-name
-    description='Create an environment for Greenbone development.'
-)
 
-parser.add_argument(
-    'prefix',
-    nargs='?',
-    default=DEFAULT_PREFIX,
-    help='Root directory where your files will be installed '
-    '(default: %(default)s).',
-)
+def create_parser():
+    parser = argparse.ArgumentParser(  # pylint: disable=invalid-name
+        description='Create an environment for Greenbone development.'
+    )
 
-parser.add_argument(
-    'sourcedir',
-    nargs='?',
-    default=DEFAULT_SOURCEDIR,
-    help='Source directory where your modules can be found '
-    '(default: %(default)s).',
-)
+    parser.add_argument(
+        'prefix',
+        nargs='?',
+        default=DEFAULT_PREFIX,
+        help='Root directory where your files will be installed '
+        '(default: %(default)s).',
+    )
 
-parser.add_argument(
-    'builddir',
-    nargs='?',
-    help='Root for your build directories (default: $PREFIX/build).',
-)
+    parser.add_argument(
+        'sourcedir',
+        nargs='?',
+        default=DEFAULT_SOURCEDIR,
+        help='Source directory where your modules can be found '
+        '(default: %(default)s).',
+    )
 
-parser.add_argument(
-    '--modules',
-    nargs='*',
-    metavar="MODULE",
-    default=DEFAULT_MODULES,
-    help='Modules to build (default: %s).' % ' '.join(DEFAULT_MODULES),
-)
+    parser.add_argument(
+        'builddir',
+        nargs='?',
+        help='Root for your build directories (default: $PREFIX/build).',
+    )
+
+    parser.add_argument(
+        '--modules',
+        nargs='*',
+        metavar="MODULE",
+        default=DEFAULT_MODULES,
+        help='Modules to build (default: %s).' % ' '.join(DEFAULT_MODULES),
+    )
+    return parser
 
 
 def filter_none(paths):
@@ -62,6 +65,7 @@ def replace_vars(template, args):
 
 
 def main():
+    parser = create_parser()
     args = parser.parse_args()
 
     prefix = Path(args.prefix).absolute()
