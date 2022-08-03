@@ -43,11 +43,11 @@
         },
         "autohooks-plugin-black": {
             "hashes": [
-                "sha256:39193d8a85df4d0d80b920b1b8b5cf6d257ad502364d0c0bf5c7ff0717b14091",
-                "sha256:a420e1e351346e4326aba5d68db2a8c953742ea859e07dd27df6d1957e4a879b"
+                "sha256:631ff2bb4943dfcb6f738481552e55e5b288a4955a7acbefb158d8a98ec3a93b",
+                "sha256:e0fd0cae8803eef5652da05f55939cdb27eb53e5980b873abeab61dd87841861"
             ],
             "index": "pypi",
-            "version": "==22.7.0"
+            "version": "==22.8.0"
         },
         "black": {
             "hashes": [
@@ -308,7 +308,7 @@
                 "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
                 "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
             ],
-            "markers": "python_version < '3.11'",
+            "markers": "python_full_version < '3.11.0a7'",
             "version": "==2.0.1"
         },
         "tomlkit": {
