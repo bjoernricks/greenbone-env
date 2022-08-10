@@ -43,11 +43,11 @@
         },
         "autohooks-plugin-black": {
             "hashes": [
-                "sha256:631ff2bb4943dfcb6f738481552e55e5b288a4955a7acbefb158d8a98ec3a93b",
-                "sha256:e0fd0cae8803eef5652da05f55939cdb27eb53e5980b873abeab61dd87841861"
+                "sha256:cf48a1951b12f8eac9e697fb18edb05ab3519da8f29e7b31135bfc1cdb74b3f5",
+                "sha256:f4b6b083be62fc13740705b1a1a897801c4f8222654f3f7d8c7e6635b7640444"
             ],
             "index": "pypi",
-            "version": "==22.8.0"
+            "version": "==22.8.1"
         },
         "black": {
             "hashes": [
@@ -289,11 +289,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:d36f579e989a90e8106b9061599c707d912e9cd296b30d62cb6b4dd3567a5ddc",
-                "sha256:db49784825568c9340e45e3322b8b8aed4ca598ce9bbf5277dcae95cc04dc469"
+                "sha256:73bfae4791da7c1c56882ab17577d00f7a37a0347162aeb9360058de0dc25083",
+                "sha256:abcb76aa4decd7a17cbe0e4b31bdf549d106ba7f668e87e0860f5f7b84b9b3fe"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==63.4.0"
+            "version": "==63.4.2"
         },
         "sniffio": {
             "hashes": [
@@ -308,16 +308,16 @@
                 "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
                 "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
             ],
-            "markers": "python_full_version < '3.11.0a7'",
+            "markers": "python_version < '3.11'",
             "version": "==2.0.1"
         },
         "tomlkit": {
             "hashes": [
-                "sha256:1c5bebdf19d5051e2e1de6cf70adfc5948d47221f097fcff7a3ffc91e953eaf5",
-                "sha256:61901f81ff4017951119cd0d1ed9b7af31c821d6845c8c477587bbdcd5e5854e"
+                "sha256:0ace4c975e0f3e6f71be8a2d61fe568777f1634bc80abff642cd3323ce709a0d",
+                "sha256:800628e7705ff7c7cc4395c29836c7073e55b9ec820e1fc696080f9c5591a789"
             ],
             "markers": "python_version >= '3.6' and python_version < '4.0'",
-            "version": "==0.11.1"
+            "version": "==0.11.3"
         },
         "wrapt": {
             "hashes": [
