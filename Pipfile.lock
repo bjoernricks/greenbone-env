@@ -35,11 +35,11 @@
         },
         "autohooks": {
             "hashes": [
-                "sha256:107420e114c6d72cc697669cd7e998b5250f458fda4217f4f26c08f13a3da437",
-                "sha256:5106b2ff98f432b9f552d2fc66e8904cb8827b28c4be4e376c46b699666d30a6"
+                "sha256:6ce64207026e5120779321ee6df6789d78eba909df0c1a087f7d09094d392f00",
+                "sha256:86a88ce410ca132bb4f9a5d265092be8fd90b2e563bcfe3dd420872b2afb9e57"
             ],
             "index": "pypi",
-            "version": "==22.11.0"
+            "version": "==22.11.1"
         },
         "autohooks-plugin-black": {
             "hashes": [
