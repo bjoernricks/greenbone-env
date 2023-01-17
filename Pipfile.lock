@@ -35,11 +35,11 @@
         },
         "autohooks": {
             "hashes": [
-                "sha256:57dcba586f0d3a57ed6c430cf6835a93f0cd74e70a8587e8bd382d6865363cda",
-                "sha256:597f04f7dba69e42f76ff4195666bbadbaaa0cd5d14fb338e53d36025a92b66d"
+                "sha256:bf9da5e9155676edde49c795b7ad4bf3b4322da3ee9c9358811a2b497eb811c7",
+                "sha256:bff89af36bc2a442a4d6198b7dbf4c6cc204b1b35c4a8d51e3c30e6bd12224bd"
             ],
             "index": "pypi",
-            "version": "==22.11.2"
+            "version": "==23.1.0"
         },
         "autohooks-plugin-black": {
             "hashes": [
@@ -254,11 +254,11 @@
         },
         "pontos": {
             "hashes": [
-                "sha256:9ff634221a729d15191bbf80e997de689978018e347e6f217f72a004c4b3dbc5",
-                "sha256:e8d91a50d586e7954c391bb1a43c640c0d392a0a2ba54f415498fabe3fb3f380"
+                "sha256:9cd07f372113128bdf908240cd8c4490fb99e740b8d7230e60f15441265b78bd",
+                "sha256:de9fd88da426fec0d705a08c4bc1ea2176dafa4fe150ae0a796706b3367ec754"
             ],
             "markers": "python_version >= '3.7' and python_version < '4.0'",
-            "version": "==23.1.0"
+            "version": "==23.1.1"
         },
         "pygments": {
             "hashes": [
@@ -296,11 +296,11 @@
         },
         "rich": {
             "hashes": [
-                "sha256:a4eb26484f2c82589bd9a17c73d32a010b1e29d89f1604cd9bf3a2097b81bb5e",
-                "sha256:ba3a3775974105c221d31141f2c116f4fd65c5ceb0698657a11e9f295ec93fd0"
+                "sha256:81c73a30b144bbcdedc13f4ea0b6ffd7fdc3b0d3cc259a9402309c8e4aee1964",
+                "sha256:f846bff22a43e8508aebf3f0f2410ce1c6f4cde429098bd58d91fde038c57299"
             ],
-            "markers": "python_version < '4.0' and python_full_version >= '3.6.3'",
-            "version": "==12.6.0"
+            "markers": "python_version >= '3.7'",
+            "version": "==13.1.0"
         },
         "six": {
             "hashes": [
